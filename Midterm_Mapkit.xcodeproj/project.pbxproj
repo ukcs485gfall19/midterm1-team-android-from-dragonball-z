@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F5E5436233D740600A6612E /* ParkMapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E5435233D740600A6612E /* ParkMapOverlay.swift */; };
 		3F5E5438233D746300A6612E /* ParkMapOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E5437233D746300A6612E /* ParkMapOverlayView.swift */; };
-		3F5E543B233D76D800A6612E /* AttractionAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E543A233D76D800A6612E /* AttractionAnnotation.swift */; };
 		3F5E543D233D776F00A6612E /* AttractionAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E543C233D776F00A6612E /* AttractionAnnotationView.swift */; };
+		3F5E5441233D81B000A6612E /* AttractionAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E5440233D81B000A6612E /* AttractionAnnotation.swift */; };
+		3F5E5443233D825C00A6612E /* ParkMapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E5442233D825C00A6612E /* ParkMapOverlay.swift */; };
 		D5ACBBE6233D0CC400122652 /* TazLocations.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5ACBBE0233D0CC300122652 /* TazLocations.plist */; };
 		D5ACBBE7233D0CC400122652 /* MagicMountain.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5ACBBE1233D0CC300122652 /* MagicMountain.plist */; };
 		D5ACBBE8233D0CC400122652 /* BatmanLocations.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5ACBBE2233D0CC400122652 /* BatmanLocations.plist */; };
@@ -46,10 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3F5E5435233D740600A6612E /* ParkMapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkMapOverlay.swift; sourceTree = "<group>"; };
 		3F5E5437233D746300A6612E /* ParkMapOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkMapOverlayView.swift; sourceTree = "<group>"; };
-		3F5E543A233D76D800A6612E /* AttractionAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionAnnotation.swift; sourceTree = "<group>"; };
 		3F5E543C233D776F00A6612E /* AttractionAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionAnnotationView.swift; sourceTree = "<group>"; };
+		3F5E5440233D81B000A6612E /* AttractionAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionAnnotation.swift; sourceTree = "<group>"; };
+		3F5E5442233D825C00A6612E /* ParkMapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkMapOverlay.swift; sourceTree = "<group>"; };
 		D5ACBBE0233D0CC300122652 /* TazLocations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TazLocations.plist; sourceTree = "<group>"; };
 		D5ACBBE1233D0CC300122652 /* MagicMountain.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MagicMountain.plist; sourceTree = "<group>"; };
 		D5ACBBE2233D0CC400122652 /* BatmanLocations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BatmanLocations.plist; sourceTree = "<group>"; };
@@ -101,8 +101,8 @@
 		3F5E5434233D73E300A6612E /* Overlays */ = {
 			isa = PBXGroup;
 			children = (
-				3F5E5435233D740600A6612E /* ParkMapOverlay.swift */,
 				3F5E5437233D746300A6612E /* ParkMapOverlayView.swift */,
+				3F5E5442233D825C00A6612E /* ParkMapOverlay.swift */,
 			);
 			path = Overlays;
 			sourceTree = "<group>";
@@ -110,7 +110,7 @@
 		3F5E5439233D76C300A6612E /* Annotations */ = {
 			isa = PBXGroup;
 			children = (
-				3F5E543A233D76D800A6612E /* AttractionAnnotation.swift */,
+				3F5E5440233D81B000A6612E /* AttractionAnnotation.swift */,
 				3F5E543C233D776F00A6612E /* AttractionAnnotationView.swift */,
 			);
 			path = Annotations;
@@ -338,12 +338,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F5E5436233D740600A6612E /* ParkMapOverlay.swift in Sources */,
 				3F5E5438233D746300A6612E /* ParkMapOverlayView.swift in Sources */,
-				3F5E543B233D76D800A6612E /* AttractionAnnotation.swift in Sources */,
 				E2022EA3233A7C4B00DC7C0B /* ParkMapViewController.swift in Sources */,
 				D5ACBBED233D0F2A00122652 /* MapOptionsViewController.swift in Sources */,
 				3F5E543D233D776F00A6612E /* AttractionAnnotationView.swift in Sources */,
+				3F5E5441233D81B000A6612E /* AttractionAnnotation.swift in Sources */,
+				3F5E5443233D825C00A6612E /* ParkMapOverlay.swift in Sources */,
 				E2022EA1233A7C4B00DC7C0B /* AppDelegate.swift in Sources */,
 				D5ACBBF0233D17CE00122652 /* Park.swift in Sources */,
 			);
