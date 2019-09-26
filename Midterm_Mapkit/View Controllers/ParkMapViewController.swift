@@ -29,8 +29,26 @@ class ParkMapViewController: UIViewController {
         mapView.region = region
     }
     
-    func loadSelectedOptions() {
-        // TODO
+    func loadSelectedOptions()
+    {
+        mapView.removeAnnotations(mapView.annotations)
+        
+        mapView.removeOverlays(mapView.overlays)
+        
+        for option in selectedOptions
+        {
+            switch (option)
+            {
+                case .mapOverlay:
+                    addOverlay()
+                
+                case .mapPins:
+                    addAttractionPins()
+                
+                default:
+                    break;
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -44,11 +62,62 @@ class ParkMapViewController: UIViewController {
     }
     
     @IBAction func mapTypeChanged(_ sender: UISegmentedControl) {
-        // TODO
+        
+        mapView.mapType = MKMapType.init(rawValue : UInt(sender.selectedSegmentIndex)) ?? .standard
+
     }
+    
+    func addOverlay()
+    {
+      let overlay = ParkMapOverlay(park: park)
+        
+      mapView.add(overlay)
+        
+    }
+    
+    func addAttractionPins()
+    {
+      guard let attractions = Park.plist("MagicMountainAttractions") as? [[String : String]] else { return }
+        
+      for attraction in attractions
+      {
+        let coordinate = Park.parseCoord(dict: attraction, fieldName: "location")
+        let title = attraction["name"] ?? ""
+        
+        let typeRawValue = Int(attraction["type"] ?? "0") ?? 0
+        
+        let type = AttractionType(rawValue: typeRawValue) ?? .misc
+        
+        let subtitle = attraction["subtitle"] ?? ""
+        
+        let annotation = AttractionAnnotation(coordinate: coordinate, title : title, subtitle : subtitle, type: type)
+        
+        mapView.addAnnotation(annotation)
+      }
+    }
+
 }
 
-extension ParkMapViewController: MKMapViewDelegate {
+extension ParkMapViewController: MKMapViewDelegate
+{
+    func mapView(_ mapView : MKMapView, rendererFor overlay : MKOverlay) -> MKOverlayRenderer
+    {
+      if overlay is ParkMapOverlay
+      {
+        return ParkMapOverlayView(overlay : overlay, overlayImage : #imageLiteral(resourceName: "overlay_park"))
+      }
+      
+      return MKOverlayRenderer()
+    }
     
+    func mapView(_ mapView : MKMapView, viewFor annotation : MKAnnotation) -> MKAnnotationView?
+    {
+      let annotationView = AttractionAnnotationView(annotation: annotation, reuseIdentifier: "Attraction")
+        
+      annotationView.canShowCallout = true
+        
+      return annotationView
+    }
+
 }
 
