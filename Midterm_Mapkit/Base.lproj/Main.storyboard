@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Park Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Midterm_Mapkit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ParkMapViewController" customModule="Midterm_Mapkit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -33,7 +33,11 @@
                                                 <segment title="Hybrid"/>
                                             </segments>
                                         </segmentedControl>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="organize" id="HDx-eH-PXM"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="organize" id="HDx-eH-PXM">
+                                            <connections>
+                                                <segue destination="ny3-f3-xR4" kind="presentation" id="3h5-nP-5LR"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -45,15 +49,18 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="oK1-BE-zOc" id="pX0-fc-ZEw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-65.217391304347828" y="137.94642857142856"/>
+            <point key="canvasLocation" x="-67" y="48"/>
         </scene>
-        <!--View Controller-->
+        <!--Park Map View Controller-->
         <scene sceneID="N6s-tf-yVe">
             <objects>
-                <viewController id="ny3-f3-xR4" sceneMemberID="viewController">
+                <viewController id="ny3-f3-xR4" customClass="ParkMapViewController" customModule="Midterm_Mapkit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lPO-QE-gV1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -98,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MIp-Yw-4hm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="720.28985507246387" y="137.94642857142856"/>
+            <point key="canvasLocation" x="717" y="48"/>
         </scene>
     </scenes>
 </document>
