@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ParkMapViewController.swift
 //  Midterm_Mapkit
 //
 //  Created by  on 9/24/19.
@@ -7,13 +7,26 @@
 //
 
 import UIKit
+import MapKit
 
 class ParkMapViewController: UIViewController {
     
     var selectedOptions : [MapOptionsType] = []
+    var park = Park(filename: "MagicMountain")
+    
+    @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let latDelta = park.overlayTopLeftCoordinate.latitude -
+            park.overlayBottomRightCoordinate.latitude
+        
+        // Think of a span as a tv size, measure from one corner to another
+        let span = MKCoordinateSpanMake(fabs(latDelta), 0.0)
+        let region = MKCoordinateRegionMake(park.midCoordinate, span)
+        
+        mapView.region = region
     }
     
     func loadSelectedOptions() {
@@ -33,5 +46,9 @@ class ParkMapViewController: UIViewController {
     @IBAction func mapTypeChanged(_ sender: UISegmentedControl) {
         // TODO
     }
+}
+
+extension ParkMapViewController: MKMapViewDelegate {
+    
 }
 
