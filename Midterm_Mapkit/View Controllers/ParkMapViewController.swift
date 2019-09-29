@@ -8,25 +8,60 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class ParkMapViewController: UIViewController {
     
     var selectedOptions : [MapOptionsType] = []
     var park = Park(filename: "MagicMountain")
+    let Manager = CLLocationManager()
     
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationServices()
         
-        let latDelta = park.overlayTopLeftCoordinate.latitude -
-            park.overlayBottomRightCoordinate.latitude
         
-        // Think of a span as a tv size, measure from one corner to another
-        let span = MKCoordinateSpanMake(fabs(latDelta), 0.0)
-        let region = MKCoordinateRegionMake(park.midCoordinate, span)
         
-        mapView.region = region
+    }
+    
+    func locationManager()
+    {
+        Manager.delegate = self
+        Manager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    func locationServices()
+    {
+        if CLLocationManager.locationServicesEnabled()
+        {
+            locationManager()
+            Authorization()
+        }
+        else
+        {
+            //check stack overflow for sending a message to the screen
+        }
+    }
+    
+    
+    
+    func Authorization()
+    {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse
+        {
+            mapView.showsUserLocation = true
+            print("inside")
+        }
+        else if CLLocationManager.authorizationStatus() == .denied
+        {
+            // show an allert instruction
+        }
+        else
+        {
+            Manager.requestWhenInUseAuthorization()
+        }
     }
     
     func loadSelectedOptions()
@@ -197,3 +232,15 @@ extension ParkMapViewController: MKMapViewDelegate
 
 }
 
+// core location extension used to update the users location on the map and to check the user authorization permissions
+extension ParkMapViewController: CLLocationManagerDelegate
+{
+    func locationManager(_ manager : CLLocationManager, locationupdate locations : [CLLocation])
+    {
+        
+    }
+    func locationManager(_ manager : CLLocationManager, authorization : [CLLocation])
+    {
+        
+    }
+}
