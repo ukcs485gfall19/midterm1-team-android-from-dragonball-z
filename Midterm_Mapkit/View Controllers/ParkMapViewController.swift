@@ -62,9 +62,7 @@ class ParkMapViewController: UIViewController {
     }
     
     @IBAction func mapTypeChanged(_ sender: UISegmentedControl) {
-        
         mapView.mapType = MKMapType.init(rawValue : UInt(sender.selectedSegmentIndex)) ?? .standard
-
     }
     
     func addOverlay()
