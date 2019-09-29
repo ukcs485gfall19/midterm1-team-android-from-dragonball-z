@@ -14,19 +14,22 @@ class ParkMapViewController: UIViewController {
     var selectedOptions : [MapOptionsType] = []
     var park = Park(filename: "MagicMountain")
     
+    var longitude: String = ""
+    var latitude: String = ""
+    
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let latDelta = park.overlayTopLeftCoordinate.latitude -
-            park.overlayBottomRightCoordinate.latitude
-        
-        // Think of a span as a tv size, measure from one corner to another
-        let span = MKCoordinateSpanMake(fabs(latDelta), 0.0)
-        let region = MKCoordinateRegionMake(park.midCoordinate, span)
-        
-        mapView.region = region
+        //let latDelta = park.overlayTopLeftCoordinate.latitude -
+        //    park.overlayBottomRightCoordinate.latitude
+        //
+        //// Think of a span as a tv size, measure from one corner to another
+        //let span = MKCoordinateSpanMake(fabs(latDelta), 0.0)
+        //let region = MKCoordinateRegionMake(park.midCoordinate, span)
+        //
+        //mapView.region = region
     }
     
     func loadSelectedOptions()
@@ -53,11 +56,9 @@ class ParkMapViewController: UIViewController {
                 
                 case .mapCharacterLocation:
                 addCharacterLocation()
-                
-                default:
-                    break;
             }
         }
+        addPin()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,6 +68,8 @@ class ParkMapViewController: UIViewController {
     @IBAction func closeOptions(_ exitSegue: UIStoryboardSegue) {
         guard let vc = exitSegue.source as? MapOptionsViewController else { return }
         selectedOptions = vc.selectedOptions
+        latitude = vc.latitude.text ?? ""
+        longitude = vc.longitude.text ?? ""
         loadSelectedOptions()
     }
     
@@ -138,6 +141,22 @@ class ParkMapViewController: UIViewController {
       mapView.add(Character(filename: "TazLocations", color: .orange))
       mapView.add(Character(filename: "TweetyBirdLocations", color: .yellow))
     }
+    
+    func addPin() {
+        if longitude == latitude && longitude == "" {}
+        else if longitude != "" && latitude != ""
+        {
+            let lat = (latitude as NSString).doubleValue
+            let lon = (longitude as NSString).doubleValue
+            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+            
+            let annotation = MKPointAnnotation()
+            print(coordinate)
+            annotation.coordinate = coordinate
+            mapView.addAnnotation(annotation)
+            print(mapView)
+        }
+    }
 }
 
 extension ParkMapViewController: MKMapViewDelegate
@@ -182,18 +201,28 @@ extension ParkMapViewController: MKMapViewDelegate
         return MKOverlayRenderer()
     }
     
-    func mapView(_ mapView : MKMapView, viewFor annotation : MKAnnotation) -> MKAnnotationView?
-    {
+    //func mapView(_ mapView : MKMapView, viewFor annotation : MKAnnotation) //-> MKAnnotationView?
+    //{
+    //    print("mapView::annotation view:: called")
+    //
+    //    let annotationView = AttractionAnnotationView(annotation: //annotation, reuseIdentifier: "Attraction")
+    //
+    //    annotationView.canShowCallout = true
+    //
+    //    print("mapView::annotation view:: returning", annotationView, " of //type: ", type(of: annotationView))
+    //
+    //    return annotationView
+    //}
+
+    func mapView(_ mapView : MKMapView, viewFor annotation : MKAnnotation) -> MKAnnotationView? {
         print("mapView::annotation view:: called")
         
-        let annotationView = AttractionAnnotationView(annotation: annotation, reuseIdentifier: "Attraction")
+        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
         
         annotationView.canShowCallout = true
-        
         print("mapView::annotation view:: returning", annotationView, " of type: ", type(of: annotationView))
         
         return annotationView
     }
-
 }
 
