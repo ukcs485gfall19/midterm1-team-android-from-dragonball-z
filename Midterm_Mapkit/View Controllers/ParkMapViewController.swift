@@ -105,7 +105,7 @@ class ParkMapViewController: UIViewController {
         
         let notificationMessage = NotificationManager()
         notificationMessage.notifications = [
-            NotificationManager.Notification(id: "reminder-1", title: "Remember the milk!", datetime: DateComponents(calendar: Calendar.current, year: 2019, month: 9, day: 29, hour: 16, minute: 47)),
+            NotificationManager.Notification(id: "reminder-1", title: "Remember the milk!", datetime: DateComponents(calendar: Calendar.current, year: 2019, month: 9, day: 30, hour: 18, minute: 10)),
         ]
 
         notificationMessage.schedule()
@@ -148,8 +148,7 @@ class ParkMapViewController: UIViewController {
 
         return annotationView
     }
-
-}*/
+}
 
 // core location extension used to update the users location on the map and to check the user authorization permissions
 extension ParkMapViewController: CLLocationManagerDelegate
