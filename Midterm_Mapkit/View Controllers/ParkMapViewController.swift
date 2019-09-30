@@ -20,6 +20,7 @@ class ParkMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         locationServices()
         
         
@@ -29,6 +30,7 @@ class ParkMapViewController: UIViewController {
     func locationManager()
     {
         Manager.delegate = self
+        
         Manager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
@@ -37,26 +39,46 @@ class ParkMapViewController: UIViewController {
         if CLLocationManager.locationServicesEnabled()
         {
             locationManager()
+            
             Authorization()
         }
         else
         {
             //check stack overflow for sending a message to the screen
+            print("ooh")
         }
     }
     
-    
+    func zoom()
+    {
+          if let userLocation = Manager.location?.coordinate
+          {
+              let viewregion = MKCoordinateRegionMakeWithDistance(userLocation, 200, 200)
+            
+              mapView.setRegion(viewregion, animated: true)
+          }
+
+    }
     
     func Authorization()
     {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse
         {
             mapView.showsUserLocation = true
-            print("inside")
+            
+            if let userLocation = Manager.location?.coordinate
+            {
+                let viewregion = MKCoordinateRegionMakeWithDistance(userLocation, 200, 200)
+                
+                mapView.setRegion(viewregion, animated: true)
+            }
+            
+            Manager.startUpdatingLocation()
         }
         else if CLLocationManager.authorizationStatus() == .denied
         {
             // show an allert instruction
+            print("ooh")
         }
         else
         {
@@ -64,7 +86,7 @@ class ParkMapViewController: UIViewController {
         }
     }
     
-    func loadSelectedOptions()
+    /*func loadSelectedOptions()
     {
         mapView.removeAnnotations(mapView.annotations)
         
@@ -93,7 +115,7 @@ class ParkMapViewController: UIViewController {
                     break;
             }
         }
-    }
+    }*/
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         (segue.destination as? MapOptionsViewController)?.selectedOptions = selectedOptions
@@ -102,14 +124,14 @@ class ParkMapViewController: UIViewController {
     @IBAction func closeOptions(_ exitSegue: UIStoryboardSegue) {
         guard let vc = exitSegue.source as? MapOptionsViewController else { return }
         selectedOptions = vc.selectedOptions
-        loadSelectedOptions()
+        /*loadSelectedOptions()*/
     }
     
     @IBAction func mapTypeChanged(_ sender: UISegmentedControl) {
         mapView.mapType = MKMapType.init(rawValue : UInt(sender.selectedSegmentIndex)) ?? .standard
     }
     
-    func addOverlay()
+    /*func addOverlay()
     {
       let overlay = ParkMapOverlay(park: park)
         
@@ -172,10 +194,10 @@ class ParkMapViewController: UIViewController {
       mapView.add(Character(filename: "BatmanLocations", color: .blue))
       mapView.add(Character(filename: "TazLocations", color: .orange))
       mapView.add(Character(filename: "TweetyBirdLocations", color: .yellow))
-    }
+    }*/
 }
 
-extension ParkMapViewController: MKMapViewDelegate
+/*extension ParkMapViewController: MKMapViewDelegate
 {
     func mapView(_ mapView : MKMapView, rendererFor overlay : MKOverlay) -> MKOverlayRenderer
     {
@@ -230,17 +252,25 @@ extension ParkMapViewController: MKMapViewDelegate
         return annotationView
     }
 
-}
+}*/
 
 // core location extension used to update the users location on the map and to check the user authorization permissions
 extension ParkMapViewController: CLLocationManagerDelegate
 {
     func locationManager(_ manager : CLLocationManager, locationupdate locations : [CLLocation])
     {
+        guard let location = locations.last
+        else {return}
+        
+        let center = CLLocationCoordinate2D(latitude:  location.coordinate.latitude, longitude : location.coordinate.longitude)
+        
+        let viewregion = MKCoordinateRegionMakeWithDistance(center, 200, 200)
+        mapView.setRegion(viewregion, animated: true)
         
     }
+    
     func locationManager(_ manager : CLLocationManager, authorization : [CLLocation])
     {
-        
+        Authorization()
     }
 }
