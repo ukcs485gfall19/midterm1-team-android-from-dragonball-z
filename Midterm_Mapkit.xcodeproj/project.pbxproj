@@ -130,6 +130,7 @@
 		D5ACBBDD233D0C6500122652 /* Park Information */ = {
 			isa = PBXGroup;
 			children = (
+				E2022E9E233A7C4B00DC7C0B /* Products */,
 				D5ACBBE2233D0CC400122652 /* BatmanLocations.plist */,
 				D5ACBBE5233D0CC400122652 /* EntranceToGoliathRoute.plist */,
 				D5ACBBE1233D0CC300122652 /* MagicMountain.plist */,
@@ -155,7 +156,6 @@
 				E2022E9F233A7C4B00DC7C0B /* Midterm_Mapkit */,
 				E2022EB4233A7C4C00DC7C0B /* Midterm_MapkitTests */,
 				E2022EBF233A7C4C00DC7C0B /* Midterm_MapkitUITests */,
-				E2022E9E233A7C4B00DC7C0B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -167,6 +167,7 @@
 				E2022EBC233A7C4C00DC7C0B /* Midterm_MapkitUITests.xctest */,
 			);
 			name = Products;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		E2022E9F233A7C4B00DC7C0B /* Midterm_Mapkit */ = {
