@@ -88,34 +88,7 @@ class ParkMapViewController: UIViewController {
     
     func loadSelectedOptions()
     {
-        mapView.removeAnnotations(mapView.annotations)
         
-        mapView.removeOverlays(mapView.overlays)
-        
-        for option in selectedOptions
-        {
-            switch (option)
-            {
-                case .mapOverlay:
-                    addOverlay()
-                
-                case .mapPins:
-                    addAttractionPins()
-                
-                case .mapRoute:
-                    addRoute()
-                
-                case .mapBoundary:
-                    addBoundary()
-                
-                case .mapCharacterLocation:
-                addCharacterLocation()
-                
-                // commenting this out because of silly warning
-                // default:
-                //    break;
-            }
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
