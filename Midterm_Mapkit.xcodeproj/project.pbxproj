@@ -27,6 +27,7 @@
 		E2022EB6233A7C4C00DC7C0B /* Midterm_MapkitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2022EB5233A7C4C00DC7C0B /* Midterm_MapkitTests.swift */; };
 		E2022EC1233A7C4C00DC7C0B /* Midterm_MapkitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2022EC0233A7C4C00DC7C0B /* Midterm_MapkitUITests.swift */; };
 		E21ADE9323412A2300ECE347 /* characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ADE9223412A2300ECE347 /* characters.swift */; };
+		E21ADE95234145AF00ECE347 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ADE94234145AF00ECE347 /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		E2022EC0233A7C4C00DC7C0B /* Midterm_MapkitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Midterm_MapkitUITests.swift; sourceTree = "<group>"; };
 		E2022EC2233A7C4C00DC7C0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E21ADE9223412A2300ECE347 /* characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = characters.swift; sourceTree = "<group>"; };
+		E21ADE94234145AF00ECE347 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 				E2022EA7233A7C4C00DC7C0B /* Assets.xcassets */,
 				E2022EA9233A7C4C00DC7C0B /* LaunchScreen.storyboard */,
 				E2022EAC233A7C4C00DC7C0B /* Info.plist */,
+				E21ADE94234145AF00ECE347 /* NotificationManager.swift */,
 			);
 			path = Midterm_Mapkit;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 			files = (
 				3F5E5438233D746300A6612E /* ParkMapOverlayView.swift in Sources */,
 				E2022EA3233A7C4B00DC7C0B /* ParkMapViewController.swift in Sources */,
+				E21ADE95234145AF00ECE347 /* NotificationManager.swift in Sources */,
 				D5ACBBED233D0F2A00122652 /* MapOptionsViewController.swift in Sources */,
 				3F5E543D233D776F00A6612E /* AttractionAnnotationView.swift in Sources */,
 				3F5E5441233D81B000A6612E /* AttractionAnnotation.swift in Sources */,

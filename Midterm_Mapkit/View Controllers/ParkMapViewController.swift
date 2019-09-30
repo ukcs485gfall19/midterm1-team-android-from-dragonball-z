@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+//import UserNotifications
 
 class ParkMapViewController: UIViewController {
     
@@ -27,6 +28,42 @@ class ParkMapViewController: UIViewController {
         let region = MKCoordinateRegionMake(park.midCoordinate, span)
         
         mapView.region = region
+        
+        /* old tutorial code
+        // get the notification center
+        let center = UNUserNotificationCenter.current()
+        
+        // edit the notification by setting up its properties
+        let content = UNMutableNotificationContent()
+        
+        // notification message
+        content.title = "notificaiton title"
+        content.subtitle = "notification subtitle"
+        content.body = "this is the body"
+        
+        // change notificaiton sound
+        content.sound = UNNotificationSound.default()
+        
+        // make sure this app's notifications go into the correct group
+        content.threadIdentifier = "local-notification"
+        
+        let date = Date(timeIntervalSinceNow: 10)
+        
+        // create a date component from the date
+        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+        
+        // create a trigger based on the calendar components we just set up
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        
+        // combine the content we just set up with the trigger we just made
+        let request = UNNotificationRequest(identifier: "content", content: content, trigger: trigger)
+        
+        center.add(request) { (error) in
+            if error != nil {
+                print(error)
+            }
+        }
+         */
     }
     
     func loadSelectedOptions()
@@ -54,8 +91,9 @@ class ParkMapViewController: UIViewController {
                 case .mapCharacterLocation:
                 addCharacterLocation()
                 
-                default:
-                    break;
+                // commenting this out because of silly warning
+                // default:
+                //    break;
             }
         }
     }
@@ -68,6 +106,13 @@ class ParkMapViewController: UIViewController {
         guard let vc = exitSegue.source as? MapOptionsViewController else { return }
         selectedOptions = vc.selectedOptions
         loadSelectedOptions()
+        
+        let notificationMessage = NotificationManager()
+        notificationMessage.notifications = [
+            NotificationManager.Notification(id: "reminder-1", title: "Remember the milk!", datetime: DateComponents(calendar: Calendar.current, year: 2019, month: 9, day: 29, hour: 16, minute: 47)),
+        ]
+
+        notificationMessage.schedule()
     }
     
     @IBAction func mapTypeChanged(_ sender: UISegmentedControl) {
