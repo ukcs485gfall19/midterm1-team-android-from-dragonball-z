@@ -48,7 +48,6 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="tjj-fc-dAA"/>
-                                    <outletCollection property="gestureRecognizers" destination="TEo-9s-YyD" appends="YES" id="aMX-Un-1Rf"/>
                                 </connections>
                             </mapView>
                         </subviews>
