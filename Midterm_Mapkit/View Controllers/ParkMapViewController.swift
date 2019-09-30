@@ -8,62 +8,82 @@
 
 import UIKit
 import MapKit
-//import UserNotifications
+import CoreLocation
 
 class ParkMapViewController: UIViewController {
     
     var selectedOptions : [MapOptionsType] = []
     var park = Park(filename: "MagicMountain")
+    let Manager = CLLocationManager()
     
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let latDelta = park.overlayTopLeftCoordinate.latitude -
-            park.overlayBottomRightCoordinate.latitude
+        locationServices()
         
-        // Think of a span as a tv size, measure from one corner to another
-        let span = MKCoordinateSpanMake(fabs(latDelta), 0.0)
-        let region = MKCoordinateRegionMake(park.midCoordinate, span)
         
-        mapView.region = region
         
-        /* old tutorial code
-        // get the notification center
-        let center = UNUserNotificationCenter.current()
+    }
+    
+    func locationManager()
+    {
+        Manager.delegate = self
         
-        // edit the notification by setting up its properties
-        let content = UNMutableNotificationContent()
-        
-        // notification message
-        content.title = "notificaiton title"
-        content.subtitle = "notification subtitle"
-        content.body = "this is the body"
-        
-        // change notificaiton sound
-        content.sound = UNNotificationSound.default()
-        
-        // make sure this app's notifications go into the correct group
-        content.threadIdentifier = "local-notification"
-        
-        let date = Date(timeIntervalSinceNow: 10)
-        
-        // create a date component from the date
-        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
-        
-        // create a trigger based on the calendar components we just set up
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        
-        // combine the content we just set up with the trigger we just made
-        let request = UNNotificationRequest(identifier: "content", content: content, trigger: trigger)
-        
-        center.add(request) { (error) in
-            if error != nil {
-                print(error)
-            }
+        Manager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    func locationServices()
+    {
+        if CLLocationManager.locationServicesEnabled()
+        {
+            locationManager()
+            
+            Authorization()
         }
-         */
+        else
+        {
+            //check stack overflow for sending a message to the screen
+            print("ooh")
+        }
+    }
+    
+    func zoom()
+    {
+          if let userLocation = Manager.location?.coordinate
+          {
+              let viewregion = MKCoordinateRegionMakeWithDistance(userLocation, 200, 200)
+            
+              mapView.setRegion(viewregion, animated: true)
+          }
+
+    }
+    
+    func Authorization()
+    {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse
+        {
+            mapView.showsUserLocation = true
+            
+            if let userLocation = Manager.location?.coordinate
+            {
+                let viewregion = MKCoordinateRegionMakeWithDistance(userLocation, 200, 200)
+                
+                mapView.setRegion(viewregion, animated: true)
+            }
+            
+            Manager.startUpdatingLocation()
+        }
+        else if CLLocationManager.authorizationStatus() == .denied
+        {
+            // show an allert instruction
+            print("ooh")
+        }
+        else
+        {
+            Manager.requestWhenInUseAuthorization()
+        }
     }
     
     func loadSelectedOptions()
@@ -119,7 +139,7 @@ class ParkMapViewController: UIViewController {
         mapView.mapType = MKMapType.init(rawValue : UInt(sender.selectedSegmentIndex)) ?? .standard
     }
     
-    func addOverlay()
+    /*func addOverlay()
     {
       let overlay = ParkMapOverlay(park: park)
         
@@ -182,10 +202,10 @@ class ParkMapViewController: UIViewController {
       mapView.add(Character(filename: "BatmanLocations", color: .blue))
       mapView.add(Character(filename: "TazLocations", color: .orange))
       mapView.add(Character(filename: "TweetyBirdLocations", color: .yellow))
-    }
+    }*/
 }
 
-extension ParkMapViewController: MKMapViewDelegate
+/*extension ParkMapViewController: MKMapViewDelegate
 {
     func mapView(_ mapView : MKMapView, rendererFor overlay : MKOverlay) -> MKOverlayRenderer
     {
@@ -240,5 +260,25 @@ extension ParkMapViewController: MKMapViewDelegate
         return annotationView
     }
 
-}
+}*/
 
+// core location extension used to update the users location on the map and to check the user authorization permissions
+extension ParkMapViewController: CLLocationManagerDelegate
+{
+    func locationManager(_ manager : CLLocationManager, locationupdate locations : [CLLocation])
+    {
+        guard let location = locations.last
+        else {return}
+        
+        let center = CLLocationCoordinate2D(latitude:  location.coordinate.latitude, longitude : location.coordinate.longitude)
+        
+        let viewregion = MKCoordinateRegionMakeWithDistance(center, 200, 200)
+        mapView.setRegion(viewregion, animated: true)
+        
+    }
+    
+    func locationManager(_ manager : CLLocationManager, authorization : [CLLocation])
+    {
+        Authorization()
+    }
+}
