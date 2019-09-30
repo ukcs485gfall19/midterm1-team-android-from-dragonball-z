@@ -33,10 +33,14 @@ enum MapOptionsType: Int {
 
 class MapOptionsViewController: UIViewController {
   
-  var selectedOptions = [MapOptionsType]()
+    var selectedOptions = [MapOptionsType]()
+    
+    @IBOutlet var longitude: UITextField!
+    
+    @IBOutlet var latitude: UITextField!
+
 }
 
-// MARK: - UITableViewDataSource
 extension MapOptionsViewController: UITableViewDataSource {
   
   func numberOfSections(in tableView: UITableView) -> Int {
@@ -59,7 +63,6 @@ extension MapOptionsViewController: UITableViewDataSource {
   }
 }
 
-// MARK: - UITableViewDelegate
 extension MapOptionsViewController: UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
