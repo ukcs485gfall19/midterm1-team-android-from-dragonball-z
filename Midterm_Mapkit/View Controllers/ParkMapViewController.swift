@@ -54,7 +54,7 @@ class ParkMapViewController: UIViewController {
             
             let annotation = MKPointAnnotation()
             print(coordinate)
-            annotation.title = "Title"
+            annotation.title = "Example Pin"
             annotation.subtitle = "Subtitle"
             annotation.coordinate = coordinate
             mapView.addAnnotation(annotation)
