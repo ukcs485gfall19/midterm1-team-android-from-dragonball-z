@@ -1,5 +1,5 @@
 //
-//  ParkMapViewController.swift
+//  MapViewController.swift
 //  Midterm_Mapkit
 //
 //  Created by  on 9/24/19.
@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ParkMapViewController: UIViewController {
+class MapViewController: UIViewController {
     
     var selectedOptions : [MapOptionsType] = []
     
@@ -151,7 +151,7 @@ class ParkMapViewController: UIViewController {
 }
 
 // core location extension used to update the users location on the map and to check the user authorization permissions
-extension ParkMapViewController: CLLocationManagerDelegate
+extension MapViewController: CLLocationManagerDelegate
 {
     func locationManager(_ manager : CLLocationManager, locationupdate locations : [CLLocation])
     {
