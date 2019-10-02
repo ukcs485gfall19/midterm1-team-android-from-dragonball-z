@@ -36,10 +36,10 @@ class Character: MKCircle
         //chooses a random radius to simulate time variance
         let randomCenter = coords[Int(arc4random()%4)]
         let randomRadius = CLLocationDistance(max(5, Int(arc4random()%40)))
-    
+        
         self.init(center: randomCenter, radius: randomRadius)
         
         self.name = filename
         self.color = color
-  }
+    }
 }
