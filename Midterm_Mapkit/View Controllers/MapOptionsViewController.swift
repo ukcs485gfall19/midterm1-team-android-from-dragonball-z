@@ -69,25 +69,3 @@ extension MapOptionsViewController: UITableViewDataSource {
         return cell
     }
 }
-
-extension MapOptionsViewControllerTutorial: UITableViewDelegate {
-  
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Get the cell at the index selected
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        guard let mapOptionsType = MapOptionsTypeTut(rawValue: indexPath.row) else { return }
-        
-        if (cell.accessoryType == .checkmark) {
-            // If the cell is selected, remove the option
-            selectedOptions = selectedOptions.filter { $0 != mapOptionsType}
-            cell.accessoryType = .none
-        } else {
-            // If the cell is not selected, add the checkmark.
-            selectedOptions += [mapOptionsType]
-            cell.accessoryType = .checkmark
-        }
-        
-        // Flash with an animation when pressed.
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-}

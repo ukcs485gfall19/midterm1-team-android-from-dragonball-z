@@ -22,18 +22,8 @@
                                 <items>
                                     <navigationItem id="QKg-Ed-5tx" userLabel="Navigation Item">
                                         <nil key="title"/>
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="b6a-iR-SOa">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="O9B-Kd-gTf">
-                                                <rect key="frame" x="20" y="7" width="92" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Home"/>
-                                            </button>
-                                            <connections>
-                                                <segue destination="xGh-dB-JzB" kind="unwind" unwindAction="closeOptions:" id="46q-8o-g0m"/>
-                                            </connections>
-                                        </barButtonItem>
                                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="8nz-IB-YTM">
-                                            <rect key="frame" x="118" y="6" width="209" height="32"/>
+                                            <rect key="frame" x="102.5" y="6" width="209" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
                                                 <segment title="Map"/>
