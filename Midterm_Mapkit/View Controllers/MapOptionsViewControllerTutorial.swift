@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum MapOptionsType: Int {
+enum MapOptionsTypeTut: Int {
     // Generate an enumerated list with the different map options to be displayed
     case mapBoundary = 0
     case mapOverlay
@@ -16,7 +16,7 @@ enum MapOptionsType: Int {
     case mapCharacterLocation
     case mapRoute
     
-    // Set the viewable map options to the enumerated list.
+    // Create a function to parse which option is selected.
     func displayName() -> String {
         switch (self) {
         case .mapBoundary:
@@ -33,18 +33,13 @@ enum MapOptionsType: Int {
     }
 }
 
-class MapOptionsViewController: UIViewController {
+class MapOptionsViewControllerTutorial: UIViewController {
     // Set the viewable map options to the enumerated list.
-    var selectedOptions = [MapOptionsType]()
-    
-    // Add latitude and longitude fields for use
-    @IBOutlet var longitude: UITextField!
-    @IBOutlet var latitude: UITextField!
-
+    var selectedOptions = [MapOptionsTypeTut]()
 }
 
-extension MapOptionsViewController: UITableViewDataSource {
-  
+extension MapOptionsViewControllerTutorial: UITableViewDataSource {
+    
     // Return the number of sections in the view (only 1)
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -60,12 +55,34 @@ extension MapOptionsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OptionCell")!
         
         // For each of the map options, create a display in the cell that is not checked by default.
-        if let mapOptionsType = MapOptionsType(rawValue: indexPath.row) {
+        if let mapOptionsType = MapOptionsTypeTut(rawValue: indexPath.row) {
             cell.textLabel!.text = mapOptionsType.displayName()
             cell.accessoryType = selectedOptions.contains(mapOptionsType) ? .checkmark : .none
         }
         
         // Return the list of options
         return cell
+    }
+}
+
+extension MapOptionsViewControllerTutorial: UITableViewDelegate {
+  
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Get the cell at the index selected
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        guard let mapOptionsType = MapOptionsTypeTut(rawValue: indexPath.row) else { return }
+        
+        if (cell.accessoryType == .checkmark) {
+            // If the cell is selected, remove the option
+            selectedOptions = selectedOptions.filter { $0 != mapOptionsType}
+            cell.accessoryType = .none
+        } else {
+            // If the cell is not selected, add the checkmark.
+            selectedOptions += [mapOptionsType]
+            cell.accessoryType = .checkmark
+        }
+        
+        // Flash with an animation when pressed.
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
