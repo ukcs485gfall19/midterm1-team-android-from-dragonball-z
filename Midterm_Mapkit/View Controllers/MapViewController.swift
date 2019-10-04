@@ -165,7 +165,7 @@ class MapViewController: UIViewController {
 // core location extension used to update the users location on the map and to check the user authorization permissions
 extension MapViewController: CLLocationManagerDelegate
 {
-    func locationManager(_ manager : CLLocationManager, locationupdate locations : [CLLocation])
+    func locationManager(_ manager : CLLocationManager, didUpdateLocations locations : [CLLocation])
     {
         guard let location = locations.last
             else {return}
@@ -177,7 +177,7 @@ extension MapViewController: CLLocationManagerDelegate
         
     }
     
-    func locationManager(_ manager : CLLocationManager, authorization status : CLAuthorizationStatus)
+    func locationManager(_ manager : CLLocationManager, didChangeAuthorization status : CLAuthorizationStatus)
     {
         Authorization()
     }
