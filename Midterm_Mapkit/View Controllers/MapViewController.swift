@@ -34,7 +34,7 @@ class MapViewController: UIViewController {
         Manager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
-    // Checks if locationServices are enabled, then initializes the location manager and authorizes it if they are
+    // Checks if locationServices are enabled, then initializes the location manager and then checks permissions for the app
     func locationServices()
     {
         if CLLocationManager.locationServicesEnabled()
@@ -42,6 +42,7 @@ class MapViewController: UIViewController {
             locationManager()
             Authorization()
         }
+        // if location services are not on display an alert
         else
         {
             let privacyalert = UIAlertView()
@@ -72,6 +73,7 @@ class MapViewController: UIViewController {
             
             Manager.startUpdatingLocation()
         }
+        // if the user does not have permission display an alert
         else if CLLocationManager.authorizationStatus() == .denied
         {
             let privacyalert = UIAlertView()
@@ -82,9 +84,9 @@ class MapViewController: UIViewController {
             
             privacyalert.show()
         }
+        // ask the user for permission
         else
         {
-            // Request for authorization.
             Manager.requestWhenInUseAuthorization()
         }
     }
