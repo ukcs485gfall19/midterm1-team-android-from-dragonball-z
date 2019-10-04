@@ -5,6 +5,9 @@
 //  Created by  on 9/24/19.
 //  Copyright © 2019 Team Android. All rights reserved.
 //
+// For core location, the tutorial at https://www.youtuve.com/watch?v=WPpaAy73nJc was used
+// For pin rendering and the page https://forums.developer.apple.com/thread/121665 was used
+
 
 import UIKit
 import MapKit
@@ -109,10 +112,19 @@ class MapViewController: UIViewController {
         longitude = vc.longitude.text ?? ""
         loadSelectedOptions()
         
+        let date = NSDate()
+        let calendar = NSCalendar.current
+        let components = calendar.dateComponents([.second, .minute, .hour, .day , .month , .year], from: date as Date)
+        let year =  components.year
+        let month = components.month
+        let day = components.day
+        let hour = components.hour
+        let minute = components.minute
+        
         //Add a notification at the hard-coded time
         let notificationMessage = NotificationManager()
         notificationMessage.notifications = [
-            NotificationManager.Notification(id: "reminder-1", title: "Remember the milk!", datetime: DateComponents(calendar: Calendar.current, year: 2019, month: 9, day: 30, hour: 18, minute: 10)),
+            NotificationManager.Notification(id: "reminder-1", title: "Remember the milk!", datetime: DateComponents(calendar: Calendar.current, year: year, month: month, day: day, hour: hour, minute: (minute!)+1)),
         ]
 
         //Schedule the notification.
