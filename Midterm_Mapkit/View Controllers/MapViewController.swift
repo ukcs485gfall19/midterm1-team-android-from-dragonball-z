@@ -34,7 +34,7 @@ class MapViewController: UIViewController {
         Manager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
-    // Checks if locationServices are enabled, then initializes the location manager and authorizes it if they are
+    // Checks if locationServices are enabled, then initializes the location manager and then checks permissions for the app
     func locationServices()
     {
         if CLLocationManager.locationServicesEnabled()
@@ -42,23 +42,20 @@ class MapViewController: UIViewController {
             locationManager()
             Authorization()
         }
+        // if location services are not on display an alert
         else
         {
-            //check stack overflow for sending a message to the screen
-            print("ooh")
+            let privacyalert = UIAlertView()
+            
+            privacyalert.title = "LocationServices"
+            privacyalert.addButton(withTitle: "Understood")
+            privacyalert.message = "You Have Your Location Services Turned Off"
+            
+            privacyalert.show()
         }
     }
     
-    // uses the location manager data to zoom in on the users location.
-    func zoom()
-    {
-        if let userLocation = Manager.location?.coordinate
-        {
-            let viewregion = MKCoordinateRegionMakeWithDistance(userLocation, 200, 200)
-            mapView.setRegion(viewregion, animated: true)
-        }
-
-    }
+    
     
     func Authorization()
     {
@@ -76,14 +73,20 @@ class MapViewController: UIViewController {
             
             Manager.startUpdatingLocation()
         }
+        // if the user does not have permission display an alert
         else if CLLocationManager.authorizationStatus() == .denied
         {
-            // show an allert instruction
-            print("ooh")
+            let privacyalert = UIAlertView()
+            
+            privacyalert.title = "LocationServices"
+            privacyalert.addButton(withTitle: "Understood")
+            privacyalert.message = "You Have Your Location Services Turned Off For The App"
+            
+            privacyalert.show()
         }
+        // ask the user for permission
         else
         {
-            // Request for authorization.
             Manager.requestWhenInUseAuthorization()
         }
     }
@@ -162,7 +165,7 @@ class MapViewController: UIViewController {
 // core location extension used to update the users location on the map and to check the user authorization permissions
 extension MapViewController: CLLocationManagerDelegate
 {
-    func locationManager(_ manager : CLLocationManager, locationupdate locations : [CLLocation])
+    func locationManager(_ manager : CLLocationManager, didUpdateLocations locations : [CLLocation])
     {
         guard let location = locations.last
             else {return}
@@ -174,7 +177,7 @@ extension MapViewController: CLLocationManagerDelegate
         
     }
     
-    func locationManager(_ manager : CLLocationManager, authorization : [CLLocation])
+    func locationManager(_ manager : CLLocationManager, didChangeAuthorization status : CLAuthorizationStatus)
     {
         Authorization()
     }
