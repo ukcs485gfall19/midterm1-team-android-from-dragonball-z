@@ -44,21 +44,17 @@ class MapViewController: UIViewController {
         }
         else
         {
-            //check stack overflow for sending a message to the screen
-            print("ooh")
+            let privacyalert = UIAlertView()
+            
+            privacyalert.title = "LocationServices"
+            privacyalert.addButton(withTitle: "Understood")
+            privacyalert.message = "You Have Your Location Services Turned Off"
+            
+            privacyalert.show()
         }
     }
     
-    // uses the location manager data to zoom in on the users location.
-    func zoom()
-    {
-        if let userLocation = Manager.location?.coordinate
-        {
-            let viewregion = MKCoordinateRegionMakeWithDistance(userLocation, 200, 200)
-            mapView.setRegion(viewregion, animated: true)
-        }
-
-    }
+    
     
     func Authorization()
     {
@@ -78,8 +74,13 @@ class MapViewController: UIViewController {
         }
         else if CLLocationManager.authorizationStatus() == .denied
         {
-            // show an allert instruction
-            print("ooh")
+            let privacyalert = UIAlertView()
+            
+            privacyalert.title = "LocationServices"
+            privacyalert.addButton(withTitle: "Understood")
+            privacyalert.message = "You Have Your Location Services Turned Off For The App"
+            
+            privacyalert.show()
         }
         else
         {
