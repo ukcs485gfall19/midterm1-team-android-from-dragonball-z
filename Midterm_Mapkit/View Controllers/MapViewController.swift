@@ -175,7 +175,7 @@ extension MapViewController: CLLocationManagerDelegate
         
     }
     
-    func locationManager(_ manager : CLLocationManager, authorization : [CLLocation])
+    func locationManager(_ manager : CLLocationManager, authorization status : CLAuthorizationStatus)
     {
         Authorization()
     }
