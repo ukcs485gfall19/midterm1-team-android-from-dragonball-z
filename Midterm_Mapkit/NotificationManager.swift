@@ -4,7 +4,7 @@
 //
 //  Created by  on 9/29/19.
 //  Copyright © 2019 Team Android. All rights reserved.
-//
+//  From Tutorial at: https://learnappmaking.com/local-notifications-scheduling-swift/
 
 import UIKit
 import UserNotifications
