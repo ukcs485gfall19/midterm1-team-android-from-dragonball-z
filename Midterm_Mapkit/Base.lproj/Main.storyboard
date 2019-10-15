@@ -42,8 +42,9 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oK1-BE-zOc">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oK1-BE-zOc">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="tjj-fc-dAA"/>
@@ -51,10 +52,6 @@
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="oK1-BE-zOc" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ERA-T1-ir6"/>
-                            <constraint firstItem="oK1-BE-zOc" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="e6h-bR-Byd"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
@@ -62,7 +59,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="TEo-9s-YyD"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="TEo-9s-YyD">
+                    <connections>
+                        <action selector="getLocationPress:" destination="BYZ-38-t0r" id="4rj-NM-Hp0"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-67" y="48"/>
         </scene>

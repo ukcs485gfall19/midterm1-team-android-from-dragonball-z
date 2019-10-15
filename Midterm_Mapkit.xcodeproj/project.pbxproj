@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D5A42094235632250030BE9A /* PinData.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5A42093235632250030BE9A /* PinData.plist */; };
 		D5ACBBED233D0F2A00122652 /* MapOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ACBBEC233D0F2A00122652 /* MapOptionsViewController.swift */; };
 		D5F1E150234546C200623CFC /* TempStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F1E14F234546C200623CFC /* TempStartViewController.swift */; };
 		E2022EA1233A7C4B00DC7C0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2022EA0233A7C4B00DC7C0B /* AppDelegate.swift */; };
@@ -38,7 +37,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D5A42093235632250030BE9A /* PinData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PinData.plist; sourceTree = "<group>"; };
 		D5ACBBEC233D0F2A00122652 /* MapOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOptionsViewController.swift; sourceTree = "<group>"; };
 		D5F1E14F234546C200623CFC /* TempStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempStartViewController.swift; sourceTree = "<group>"; };
 		E2022E9D233A7C4B00DC7C0B /* Midterm_Mapkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Midterm_Mapkit.app; path = "/Users/blto222/Desktop/midterm1-team-android-from-dragonball-z/build/Debug-iphoneos/Midterm_Mapkit.app"; sourceTree = "<absolute>"; };
@@ -82,14 +80,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D5A420922356320C0030BE9A /* PlistData */ = {
-			isa = PBXGroup;
-			children = (
-				D5A42093235632250030BE9A /* PinData.plist */,
-			);
-			path = PlistData;
-			sourceTree = "<group>";
-		};
 		D5ACBBDC233D0C3E00122652 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,7 +101,6 @@
 		E2022E9F233A7C4B00DC7C0B /* Midterm_Mapkit */ = {
 			isa = PBXGroup;
 			children = (
-				D5A420922356320C0030BE9A /* PlistData */,
 				D5ACBBDC233D0C3E00122652 /* View Controllers */,
 				E2022EA0233A7C4B00DC7C0B /* AppDelegate.swift */,
 				E2022EA9233A7C4C00DC7C0B /* LaunchScreen.storyboard */,
@@ -248,7 +237,6 @@
 			files = (
 				E2022EAB233A7C4C00DC7C0B /* LaunchScreen.storyboard in Resources */,
 				E2022EA8233A7C4C00DC7C0B /* Assets.xcassets in Resources */,
-				D5A42094235632250030BE9A /* PinData.plist in Resources */,
 				E2022EA6233A7C4B00DC7C0B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

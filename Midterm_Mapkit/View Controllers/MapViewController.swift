@@ -25,6 +25,8 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(getLocationData(longGesture:)))
+        mapView.addGestureRecognizer(longGesture)
         
         //Begin location services.
         locationServices()
@@ -58,7 +60,16 @@ class MapViewController: UIViewController {
         }
     }
     
-    
+    @objc func getLocationData(longGesture: UIGestureRecognizer) {
+        if longGesture.state == .ended {
+            let touchPoint = longGesture.location(in: mapView)
+            let wayCoords = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+            let location = CLLocationCoordinate2D(latitude: wayCoords.latitude, longitude: wayCoords.longitude)
+            
+            // TODO: Create menu to ask for pin data before dropping the pin.
+            addPin(location: location)
+        }
+    }
     
     func Authorization()
     {
@@ -97,7 +108,7 @@ class MapViewController: UIViewController {
     func loadSelectedOptions()
     {
         //No other functionality in the options is used, so only add new pins.
-        addPin()
+        //addPin()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -135,24 +146,29 @@ class MapViewController: UIViewController {
         mapView.mapType = MKMapType.init(rawValue : UInt(sender.selectedSegmentIndex)) ?? .standard
     }
     
-    func addPin() {
+    func addPin(location: CLLocationCoordinate2D) {
         // Ensure the longitude and latitude have values
-        if longitude != "" && latitude != ""
-        {
-            // Convert them to doubles and create a coordinate based on those values.
-            let lat = (latitude as NSString).doubleValue
-            let lon = (longitude as NSString).doubleValue
-            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-            
-            // Create an Pin and add it to the map view.
-            let annotation = MKPointAnnotation()
-            print(coordinate)
-            annotation.title = "Example Pin"
-            annotation.subtitle = "Subtitle"
-            annotation.coordinate = coordinate
-            mapView.addAnnotation(annotation)
-            print(mapView)
-        }
+        //if longitude != "" && latitude != ""
+        //{
+        //    // Convert them to doubles and create a coordinate based on //those values.
+        //    let lat = (latitude as NSString).doubleValue
+        //    let lon = (longitude as NSString).doubleValue
+        //    let coordinate = CLLocationCoordinate2D(latitude: lat, //longitude: lon)
+        //
+        //    // Create an Pin and add it to the map view.
+        //    let annotation = MKPointAnnotation()
+        //    print(coordinate)
+        //    annotation.title = "Example Pin"
+        //    annotation.subtitle = "Subtitle"
+        //    annotation.coordinate = coordinate
+        //    mapView.addAnnotation(annotation)
+        //    print(mapView)
+        //}
+        let annotation = MKPointAnnotation()
+        annotation.title = "Example Pin"
+        annotation.subtitle = "Subtitle"
+        annotation.coordinate = location
+        mapView.addAnnotation(annotation)
     }
     
     
